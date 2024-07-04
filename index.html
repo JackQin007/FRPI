@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathJax Example</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<head>
+  <title>FRPI</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="Feasible Reachable Policy Iteration">
+    <meta name="keywords" content="Safety, Reinforcement Learning, AI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Feasible Reachable Policy Iteration </title>
+
+    <link rel="icon" href="./assets/icon.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./assets/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <script defer src="./assets/js/fontawesome.all.min.js"></script>
+
+</head>
+
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        </a>
+    </div>
+</nav>
+
+      
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title is-bold">
+                <img src="./assets/icon.png" style="width:1em;vertical-align: middle" alt="Logo"/> 
+                <span class="mmmu" style="vertical-align: middle">FRPI</span>
+                </h1>
+            <h2 class="subtitle is-3 publication-subtitle">
+                Feasible Reachable Policy Iteration
+
+                <!-- <br>
+                and Reasoning Benchmark for Expert AGI -->
+            </h2>
+            <div class="is-size-5 publication-authors">
+                <span class="author-block">Shentao Qin*<sup style="color:#007bff;">†,1</sup>,</span>
+                <span class="author-block">Yujie Yang*<sup style="color:#007bff;">1</sup>,</span>
+                <span class="author-block">Yao Mu*<sup style="color:#ed4b82;">2</sup>,</span>
+                <span class="author-block">Jie Li<sup style="color:#6fbf73;">1</sup>,</span><br>
+                <span class="author-block">Wenjun Zhou<sup style="color:#6fbf73;">1</sup>,</span>
+                <span class="author-block">Jingliang Duan<sup style="color:#ffac33;">3</sup>,</span>
+                <span class="author-block">Shengbo Eben Li<sup style="color:#007bff;">✉1</sup>,</span>
+            </div>
+            
+            <br>
+            
+            <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup style="color:#007bff;">1</sup>School of Vehicle and Mobility, Tsinghua University</span><br>
+                <span class="author-block"><sup style="color:#6fbf73;">2</sup>Department of Computer Science, The University of
+                  Hong Kong</span><br>
+                <span class="author-block"><sup style="color:#ed4b82;">3</sup>School of Mechanical Engineering, University of Science and Technology Beijing</span><br>
+            </div>
+    
+            <br>
+            <div class="is-size-5 publication-authors">
+                <span class="author-block">*Equal contribution, ✉Corresponding author</span><br>
+                <span class="author-block">†Project Lead:</span>
+                <span class="author-block"><a href="mailto:qst23@mails.tsinghua.edu.cn">qst23@mails.tsinghua.edu.cn</a></span>
+            </div>
+            
+    <!-- link -->
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://openreview.net/pdf?id=ks8qSwkkuZ"
+                      class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>PDF</span>
+                  </a>
+              </span>
+                <span class="link-block">
+                    <a href="https://openreview.net/forum?id=ks8qSwkkuZ"
+                        class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Openreview</span>
+                    </a>
+                </span>
+                <span class="link-block">
+                    <a href="https://github.com/JackQin007/FRPI"
+                        class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                    </a>
+                </span>
+
+                </div>
+    
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+<style>
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+    }
+</style>
+
+<section class="hero teaser">
+<div class="container is-max-desktop">
+        <div class="content has-text-centered">
+        <img src="./assets/FRPI_framework.png" alt="geometric reasoning" width="130%"/>
+        </div>
+</div>
+</section>
+
+<section class="section">
+    <div class="container" style="margin-bottom: 2vh;">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">🔔News</h2>
+          <div class="content has-text-justified">
+            <p>
+              <b>🔥[2024-01-16]: Our paper <a href="https://openreview.net/pdf?id=ks8qSwkkuZ">Feasible Reachable Policy Iteration
+</a> has been accepted by ICML 2024.</b>
+            </p>
+        </div>      
+          <h2 class="title is-3">Abstraction</h2>
+          <div class="content has-text-justified">
+            <p><strong>
+              FRPI is an efficient policy space pruning algorithm of safe reinforcement learning for goal-reaching problems with safety constraints, which achieves the best performance both in safety and return.
+            </strong>
+            </p>
+            <p>
+              The goal-reaching tasks with safety constraints are common control problems in real world, such as intelligent driving and robot manipulation. The difficulty of this kind of problem comes from the exploration termination caused by safety constraints and the sparse rewards caused by goals.
+              The existing safe RL avoids unsafe exploration by restricting the search space to a feasible region, the essence of which is the pruning of the search space. However, there are still many ineffective explorations in the feasible region because of the ignorance of the goals.
+              Our approach considers both safety and goals; the policy space pruning is achieved by a function called feasible reachable function, which describes whether there is a policy to make the agent safely reach the goals in the finite time domain. This function naturally satisfies the self-consistent condition and the risky Bellman equation, which can be solved by the fixed point iteration method. 
+              On this basis, we propose feasible reachable policy iteration (FRPI), which is divided into three steps: policy evaluation, region expansion, and policy improvement. 
+              In the region expansion step, by using the information of agent to reach the goals, the convergence of the feasible region is accelerated, and simultaneously a smaller feasible reachable region is identified. 
+              The experimental results verify the effectiveness of the proposed FR function in both improving the convergence speed of better or comparable performance without sacrificing safety and identifying a smaller policy space with higher sample efficiency.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+  </div>
+</section>
+
+<!-- Methods SECTION -->
+<section class="hero is-light is-small">
+    <div class="hero-body has-text-centered">
+      <h1 class="title is-1 mmmu">Methods</h1>
+    </div>
+  </section>
+
+
+<section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <!-- <div class="column is-full-width has-text-centered"> -->
+        <div class="column is-four-fifths">
+            <h2 class="title is-3">Feasible Reachable Region Identification</h2>
+          <div class="content has-text-justified">
+          <p>
+          Only a tiny subset of state space is valuable to explore, where the target state can be reached in a finite horizon, and the safety constraints can be persistently satisfied.
+        </p>
+          <div class="content has-text-centered">
+            <img src="./assets/Feasible Reachable Region.png" alt="algebraic reasoning" class="center" style="width: 650px;">
+            <p style="text-align: left;">
+              <b><i>Figure 1:</i></b> The trajectories generated by policy in state space can be divided into four categories: <br>
+              (1) trajectories that successfully reach the target set without violating constraints, which is feasible reachable.<br>
+              (2) trajectories that can reach the target set but violate constraints, which is infeasible.<br>
+              (3) trajectories that can never reach the target set but never violate the constraints, which is unreachable. <br>
+              (4) trajectories that neither reach the target nor guarantee persistent constraint satisfaction, which is both infeasible and unreachable. <br>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="content has-text-centered">
+        <img src="./assets/FR Region.png" alt="algebraic reasoning" class="center" style="width: 400px;" >
+        <p><b><i>Figure 2:</i></b>The intuitive relationship among the state space. Constrained set, feasible region, reachable region, feasible reachable region (FR Region). 
+          \[\mathrm{X}_{\mathrm{FR}}^{*} \subseteq (X^*_{\mathrm{feas}}\ \cap  \mathrm{X}_{\mathrm{reach}}^*).\]</p>
+      </div>
+
+</section>    
+  
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+      <div class="content has-text-justified">
+      </div>      
+        <h2 class="title is-3">Feasible Reachable Function</h2>
+        <div class="content has-text-justified">
+          <p><strong>
+            FRPI is an efficient policy space pruning algorithm of safe reinforcement learning for goal-reaching problems with safety constraints, which achieves the best performance both in safety and return.
+          </strong>
+          </p >
+          <p style="text-align: left;">
+            \[F^\pi(x_0) =g(x_0) + c(x_0) + \\
+            \quad\sum_{m=1}^{T} \prod_{n=0}^{m-1} (1+c(x_{n}))(1 - g(x_{n}))\gamma^{n} (g(x_m)+c(x_m)) \]
+            where  \[g(x) = \textbf{1}_{x_{\mathrm{goal}}}(x)\] indicating whether the target set is reached, \[c(x) = -\textbf{1}_{\bar{x}_{\mathrm{cstr}}}(x)\] indicating whether a state constraint is violated.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./assets/FR_Traj_Tree.png" alt="algebraic reasoning" class="center" style="width: 450px;">
+          <p style="text-align: left;">
+            <b><i>Figure 3:</i></b> Forward Feasible Reachable Policy Tree by FR Function Identification. The green zone represents the feasible policy, while the red zone represents the FR policy. For a given state, actions are constrained to the feasible reachable action set.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</div>
+</section>
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+      <div class="content has-text-justified">
+      </div>      
+        <h2 class="title is-3">Feasible Reachable Policy Iteration</h2>
+        <div class="content has-text-justified">
+          <p><strong>
+            FRPI is an efficient policy space pruning algorithm of safe reinforcement learning for goal-reaching problems with safety constraints, which achieves the best performance both in safety and return.
+          </strong></p >
+          <p style="text-align: left;">
+            Inside the region:
+            \[ \pi_{k+1}(x) = \arg \underset{u}{\max} r(x, u) + \gamma V^{\pi_k}(x') \]
+            \[\text{s.t. } F^{\pi_k}(x') > 0\] 
+            Outside the region:
+            \[ \pi_{k+1}(x) = \arg \max_u F^{\pi_k}(x') \]
+            Feasible Reachable Bellman Equation:
+            \[V(x) = \max_{u \in \mathrm{U}^*(x)} r(x, u) + \gamma V(x') \quad
+            V: \mathrm{X}^{*} \rightarrow \mathbb{R}\]
+            Risky Bellman Equation:
+            \[F(x) = c(x) + g(x) + (1 + c(x))(1-g(x))\gamma \max_{u} F(x') \]
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</div>
+</section>
+
+
+
+
+
+<!-- RESULTS SECTION -->
+<section class="hero is-light is-small">
+    <div class="hero-body has-text-centered">
+      <h1 class="title is-1 mmmu">Experiment Results</h1>
+    
+    </div>
+  </section>
+  
+
+<section class="section">
+    <div class="container">
+      <div class="content has-text-justified">
+        <p style="text-align: center;"><strong>
+          1. Can FR function enable an efficient policy space pruning to achieve faster convergence than other algorithms?<br>
+          2. Can FRPI-SAC speed up feasible region expansion, and simultaneously identify a smaller FR region?<br>
+          3. Do FRPI-SAC achieve a comparable performance faster than other algorithms without sacrificing safety?<br>
+        <strong></p>
+    </div>      
+      <div class="columns is-centered has-text-centered">
+        <!-- <div class="column is-full-width has-text-centered"> -->
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Policy Space Prunning</h2>
+          <div class="content has-text-centered">
+            <img src="./assets/Experiment1.png" alt="algebraic reasoning" class="center" style="width: 600px;">
+            <p><b><i>Figure 4:</i></b> The policy convergence by Q-learning(Penalty) and FRPI. FRPI pruned the policy space significantly, achieving better experimental results regardless of the environmental dimension.</p>
+          </div>
+        </div>
+      </div>
+
+</section>      
+
+<section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <!-- <div class="column is-full-width has-text-centered"> -->
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">The region-expansion Experiment</h2>
+          <div class="content has-text-justified">
+          <p>
+            Adaptive Cruise Control (ACC):The goal of ACC is to control a following vehicle to converge to a fixed distance with respect to a leading vehicle.<br>
+          </p>
+          <div class="content has-text-centered">
+            <img src="./assets/ACC.png" alt="algebraic reasoning" class="center" style="width: 600px;">
+            <p><b><i>Figure 5:</i></b> The region-expansion of ACC. </p>
+          </div>
+          <p>
+            Quadrotor Trajectory Tracking:Different from the previous stabilization task, the Quadrotor is a trajectory tracking task that comes from  <a href="https://github.com/utiasDSL/safe-control-gym"> safe-control-gym </a>, where a 2D quadrotor is required to follow a circular trajectory in the vertical plane while keeping the vertical position in a particular range. 
+          </p>
+          <div class="content has-text-centered">
+            <img src="./assets/Quadrotor.png" alt="algebraic reasoning" class="center" style="width: 600px;">
+            <p><b><i>Figure 6:</i></b> The region-expansion of Quadrotor. </p>
+          </div>
+        </div>
+        </div>
+      </div>
+
+ 
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <!-- <div class="column is-full-width has-text-centered"> -->
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">The Experiment on Safety Gym</h2>
+        <div class="content has-text-justified">
+        <p>
+          FRPI-SAC achieves near-zero constraint violations on all tasks, demonstrating low and stable episode cost curves. 
+          In comparison, the curves of SAC and SAC-Lag failed to converge to zero or have severe fluctuations. 
+          Moreover, our proposed algorithm also exhibits outstanding returns on all the tasks, both in convergence speed, stable training processing, and final performance. 
+          Although some non-constraint algorithms like SAC achieve close returns, it comes with sacrificing safety. 
+      </p>
+        <div class="content has-text-centered">
+          <img src="./assets/Safety_Gym Experiment.png" alt="algebraic reasoning" class="center" style="width: 800px;">
+          <p><b><i>Figure 7:</i></b> Optimization results for safety-gym. </p>
+        </div>
+      </div>
+      </div>
+    </div>
+
+</section> 
+
+<!-- @PAN TODO: bibtex -->
+<section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3 has-text-centered">BibTeX</h2>
+      <pre><code>
+        @inproceedings{qinfeasible,
+          title={Feasible Reachable Policy Iteration},
+          author={Qin, Shentao and Yang, Yujie and Mu, Yao and Li, Jie and Zou, Wenjun and Li, Shengbo Eben and Duan, Jingliang},
+          booktitle={Forty-first International Conference on Machine Learning},
+          year={2024},
+          url={https://openreview.net/pdf?id=ks8qSwkkuZ}
+        }
+  </code></pre>
+    </div>
+</section>
+  
+<footer class="footer">
+<!-- <div class="container"> -->
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+    <div class="column is-8">
+        <div class="content has-text-centered">
+        <p>
+            This website is website adapted from <a href="https://mmmu-benchmark.github.io/">MMMU</a>, <br>
+            licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+        </div>
+    </div>
+    </div>
+<!-- </div> -->
+</footer>
+
+
+</body>
