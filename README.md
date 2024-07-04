@@ -33,6 +33,24 @@ At the start of training, we first collect data containing four sorts of traject
 Convergence of FRPI requires convergence of both regions and policies. The core step is the learning process of region, which contains both region identification and region expansion. In the FR region identification, we fix the policy function and update the FR function by feasible reachable self-consistent condition. In the FR region expansion, we fixed the scenery function to find a better policy by promoting feasible reachability outside the region. Once the FR region is given, we can efficiently improve the return within the region to find the optimal policy that satisfies the feasible reachability constraint.
 
 
+## The comparison of the time in training 
+Only one more scenery module, a simple MLP module that is easy to compute, was added to the FRPI framework. The result showed that the computational cost of the scenery module update is similar to that of the critic module. The time consumption experiment also showed that no additional computational burden was added. Furthermore, benefiting from the further pruning structural design, we achieved better or comparable convergence computer time consumption than SAC. 
+The configuration is NVIDIA GPU3090; we train by JAX and set XLA_PYTHON_CLIENT_MEM_FRACTION=0.1(2720MB GPU).
+
+| Algorithm     | FRPI-SAC | FPI-SAC | RAC   | SAC-Lag | SAC   |
+|---------------|----------|---------|-------|---------|-------|
+| Inference Time (ms) | 1.576    | 1.573   | 1.589 | 1.742   | 0.983 |
+
+
+| Convergence time(s) | PointGoal | PointPush | CarGoal | CarPush |
+|-----------|-----------|-----------|---------|---------|
+| FRPI-SAC  | **2.0K**      | **4.5k**      | **2.2K**    | **8.6k**    |
+| SAC       | 2.5K      | 4.6k      | 2.3K    | 9.3k    |
+| SAC-Lag   | 7.3K      | 15.2k     | 5.5K    | 30.0k   |
+| FPI-SAC   | 6.2K      | 12.3k     | 5.3K    | 20.7k   |
+| RAC       | 4.8K      | 8.3k      | 5.6K    | 14.2k   |
+>The table shows the number of interactions required to reach the specified bar (as shown in Figure 10), measured in millions of samples.
+
 ## Quick Start
 ```bash
 # Create environment
